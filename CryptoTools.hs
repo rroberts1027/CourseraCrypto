@@ -7,13 +7,9 @@ import Data.Bits
 
 
 data Message = M String
-    deriving (Show)
 data HexString = HS String
-    deriving (Show)
 data HexList = HL [String] 
-    deriving (Show)
 data IntList = IL [Int]
-    deriving (Show)
 
 class Crypto a where
      toMessage :: a -> Message
@@ -55,6 +51,17 @@ instance Crypto IntList where
      toHexList (IL x) = HL $ map (\y -> headingZero . toAlphaDigits $ toBase 16 $ y) x
      toIntList = id
 
+instance Show Message where
+    show (M x) = x
+
+instance Show HexString where
+    show (HS x) = x
+
+instance Show HexList where
+    show (HL x) = show x
+
+instance Show IntList where
+    show (IL x) = show x
 
 breakUpHex :: String -> [String]
 breakUpHex (x:(y:tl)) = (x:(y:[])):(breakUpHex tl)
