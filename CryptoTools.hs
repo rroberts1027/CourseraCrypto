@@ -1,4 +1,4 @@
-module Crypto where
+module CryptoTools where
 
 import Data.Text.Lazy.Read
 import Data.Char
