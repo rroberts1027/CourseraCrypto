@@ -52,16 +52,16 @@ instance Crypto IntList where
      toIntList = id
 
 instance Show Message where
-    show (M x) = x
+    show (M x) = '\"':x ++ ['\"']
 
 instance Show HexString where
-    show (HS x) = x
+    show (HS x) = "hex: \"" ++ x ++ "\""
 
 instance Show HexList where
-    show (HL x) = show x
+    show (HL x) = concat $ map (\y -> " . " ++ y) x
 
 instance Show IntList where
-    show (IL x) = show x
+    show (IL x) = concat $ map (\y -> " . " ++ (show y)) x
 
 breakUpHex :: String -> [String]
 breakUpHex (x:(y:tl)) = (x:(y:[])):(breakUpHex tl)
